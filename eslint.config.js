@@ -1,5 +1,5 @@
-import antfu from "@antfu/eslint-config";
-import perfectionist from "eslint-plugin-perfectionist";
+import antfu from "@antfu/eslint-config"
+import perfectionist from "eslint-plugin-perfectionist"
 
 export default antfu(
   {
@@ -28,5 +28,5 @@ export default antfu(
       ".husky/install.mjs",
       "src/providers/prisma/generated",
     ],
-  }
-);
+  },
+)

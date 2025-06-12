@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "prepare": "bun .husky/install.mjs",
-    "commit": "cz",
+    "commit": "lint-staged && cz",
+    "lint-fix": "eslint . --report-unused-disable-directives --fix",
     "dotenvx": "dotenvx",
     "env:dev:dc": "dotenvx decrypt",
     "env:dev:ec": "dotenvx encrypt",
@@ -27,7 +28,8 @@
     "cz-customizable": "^7.4.0",
     "eslint": "^9.28.0",
     "eslint-plugin-perfectionist": "^4.14.0",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -39,5 +41,8 @@
     "cz-customizable": {
       "config": "./cz.config.cjs"
     }
+  },
+  "dependencies": {
+    "orpc-backend": "."
   }
 }

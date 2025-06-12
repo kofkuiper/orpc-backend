@@ -1,57 +1,10 @@
 module.exports = {
-  types: [
-    { value: ":sparkles: feat", name: "✨ feat:\tAdding a new feature" },
-    { value: ":bug: fix", name: "🐛 fix:\tFixing a bug" },
-    { value: ":memo: docs", name: "📝 docs:\tAdd or update documentation" },
-    {
-      value: ":lipstick: style",
-      name: "💄 style:\tAdd or update styles, ui or ux",
-    },
-    {
-      value: ":recycle: refactor",
-      name: "♻️ refactor:\tCode change that neither fixes a bug nor adds a feature",
-    },
-    {
-      value: ":zap: perf",
-      name: "⚡️ perf:\tCode change that improves performance",
-    },
-    {
-      value: ":white_check_mark: test",
-      name: "✅ test:\tAdding tests cases",
-    },
-    {
-      value: ":truck: chore",
-      name: "🚚 chore:\tChanges to the build process or auxiliary tools\n\t\tand libraries such as documentation generation",
-    },
-    { value: ":rewind: revert", name: "⏪️ revert:\tRevert to a commit" },
-    { value: ":construction: wip", name: "🚧 wip:\tWork in progress" },
-    {
-      value: ":construction_worker: build",
-      name: "👷 build:\tAdd or update regards to build process",
-    },
-    {
-      value: ":green_heart: ci",
-      name: "💚 ci:\tAdd or update regards to build process",
-    },
-  ],
+  allowBreakingChanges: ["feat", "fix"],
 
-  scopes: [
-    { name: "backend" },
-    { name: "admin" },
-    { name: "web" },
-    { name: "database" },
-    { name: "ci" },
-    { name: "cd" },
-    { name: "docker" },
-    { name: "general" },
-  ],
+  allowCustomScopes: true,
 
-  usePreparedCommit: false, // to re-use commit from ./.git/COMMIT_EDITMSG
   allowTicketNumber: false,
   isTicketNumberRequired: false,
-  ticketNumberPrefix: "TICKET-",
-  ticketNumberRegExp: "\\d{1,5}",
-
   // it needs to match the value for field type. Eg.: 'fix'
   /*
   scopeOverrides: {
@@ -66,26 +19,73 @@ module.exports = {
   */
   // override the messages, defaults are as follows
   messages: {
-    type: "Select the type of change that you're committing:",
-    scope: "\nDenote the SCOPE of this change (optional):",
+    body: "Provide a LONGER description of the change (optional). Use \"|\" to break new line:\n",
+    breaking: "List any BREAKING CHANGES (optional):\n",
+    confirmCommit: "Are you sure you want to proceed with the commit above?",
     // used if allowCustomScopes is true
     customScope: "Denote the SCOPE of this change:",
-    subject: "Write a SHORT, IMPERATIVE tense description of the change:\n",
-    body: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n',
-    breaking: "List any BREAKING CHANGES (optional):\n",
     footer:
       "List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n",
-    confirmCommit: "Are you sure you want to proceed with the commit above?",
+    scope: "\nDenote the SCOPE of this change (optional):",
+    subject: "Write a SHORT, IMPERATIVE tense description of the change:\n",
+    type: "Select the type of change that you're committing:",
   },
+  scopes: [
+    { name: "backend" },
+    { name: "admin" },
+    { name: "web" },
+    { name: "database" },
+    { name: "ci" },
+    { name: "cd" },
+    { name: "docker" },
+    { name: "general" },
+  ],
+  // limit subject length
+  subjectLimit: 100,
 
-  allowCustomScopes: true,
-  allowBreakingChanges: ["feat", "fix"],
+  ticketNumberPrefix: "TICKET-",
+
+  ticketNumberRegExp: "\\d{1,5}",
+  types: [
+    { name: "✨ feat:\tAdding a new feature", value: ":sparkles: feat" },
+    { name: "🐛 fix:\tFixing a bug", value: ":bug: fix" },
+    { name: "📝 docs:\tAdd or update documentation", value: ":memo: docs" },
+    {
+      name: "💄 style:\tAdd or update styles, ui or ux",
+      value: ":lipstick: style",
+    },
+    {
+      name: "♻️ refactor:\tCode change that neither fixes a bug nor adds a feature",
+      value: ":recycle: refactor",
+    },
+    {
+      name: "⚡️ perf:\tCode change that improves performance",
+      value: ":zap: perf",
+    },
+    {
+      name: "✅ test:\tAdding tests cases",
+      value: ":white_check_mark: test",
+    },
+    {
+      name: "🚚 chore:\tChanges to the build process or auxiliary tools\n\t\tand libraries such as documentation generation",
+      value: ":truck: chore",
+    },
+    { name: "⏪️ revert:\tRevert to a commit", value: ":rewind: revert" },
+    { name: "🚧 wip:\tWork in progress", value: ":construction: wip" },
+    {
+      name: "👷 build:\tAdd or update regards to build process",
+      value: ":construction_worker: build",
+    },
+    {
+      name: "💚 ci:\tAdd or update regards to build process",
+      value: ":green_heart: ci",
+    },
+  ],
   // skip any questions you want
   // skipQuestions: ['scope', 'body'],
 
-  // limit subject length
-  subjectLimit: 100,
+  usePreparedCommit: false, // to re-use commit from ./.git/COMMIT_EDITMSG
   // breaklineChar: '|', // It is supported for fields body and footer.
   // footerPrefix : 'ISSUES CLOSED:'
   // askForBreakingChangeFirst : true, // default is false
-};
+}
