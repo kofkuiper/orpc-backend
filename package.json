@@ -1,0 +1,43 @@
+{
+  "name": "orpc-backend",
+  "module": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "prepare": "bun .husky/install.mjs",
+    "commit": "cz",
+    "dotenvx": "dotenvx",
+    "env:dev:dc": "dotenvx decrypt",
+    "env:dev:ec": "dotenvx encrypt",
+    "env:uat:ec": "dotenvx -f .env.uat encrypt",
+    "env:uat:dc": "dotenvx -f .env.uat decrypt",
+    "env:prod:ec": "dotenvx -f .env.prod encrypt",
+    "env:prod:dc": "dotenvx -f .env.prod decrypt",
+    "env:all:dc": "bun env:dev:dc && bun env:uat:dc && bun env:prod:dc",
+    "env:all:ec": "bun env:dev:ec && bun env:uat:ec && bun env:prod:ec",
+    "dotenvx:example": "bun env:dev:dc && bun run dev",
+    "dotenvx:start": "dotenvx run -- bun start"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.14.1",
+    "@dotenvx/dotenvx": "^1.44.2",
+    "@types/bun": "latest",
+    "commitizen": "^4.3.1",
+    "commitlint": "^19.8.1",
+    "commitlint-config-gitmoji": "^2.3.1",
+    "cz-customizable": "^7.4.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-perfectionist": "^4.14.0",
+    "husky": "^9.1.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./cz.config.cjs"
+    }
+  }
+}
